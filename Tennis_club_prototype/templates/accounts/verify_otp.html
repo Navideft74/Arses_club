@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<!-- ینی هر چی تو بیسه اینجام هس -->
+
+
+{% block content %} 
+<!-- any contetnt of this page should be placed here -->
+
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <label for="otp">Enter OTP for {{ request.session.mobile }}:</label>
+        <input type="text" name="otp" id="otp" required>
+        <button type="submit">Verify otp</button>
+    </form>
+</div>
+
+<!-- any contetnt of this page should be placed here -->
+{% endblock %}

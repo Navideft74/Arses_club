@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<!-- ینی هر چی تو بیسه اینجام هس -->
+
+
+{% block content %} 
+<!-- any contetnt of this page should be placed here -->
+
+<div>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        <label for="mobile_input">Enter mobile:</label>
+        <input type="text" id="mobile_input" name="mobile">
+        <input type="submit" value="Login or SignUp">
+    </form>
+</div>
+
+<!-- any contetnt of this page should be placed here -->
+{% endblock %}

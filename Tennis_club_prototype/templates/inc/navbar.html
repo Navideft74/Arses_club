@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">My Tennis Club</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'signup_or_login' %}">SignUp or Login</a>
+          </li>
+        {% endif %}
+      </ul>
+      <span class="navbar-text">
+        {% if user.is_authenticated %}
+          {% if user.profile %}
+            Welcome, <a href="{% url 'profile' %}">{{ user.profile.first_name }} {{ user.profile.last_name }}</a>
+          {% else %}
+            Welcome, {{ user.mobile }}
+          {% endif %}
+        {% else %}
+          You have not logged in yet
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</nav>

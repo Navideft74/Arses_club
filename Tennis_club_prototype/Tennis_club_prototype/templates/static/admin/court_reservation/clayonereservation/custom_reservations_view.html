@@ -1,0 +1,76 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<h2>Reservations for {{ date }}</h2>
+
+<form method="get">
+    <label for="date">Select Date:</label>
+    <input type="date" name="date" value="{{ date }}">
+    <button type="submit">Go</button>
+</form>
+
+<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <th>Time Slot</th>
+            <th>Court 1</th>
+            <th>Court 2</th>
+            <th>Court 3</th>
+            <th>Court 4</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for time in time_slots %}
+        <tr>
+            <td>{{ time }}</td>
+            
+            <!-- Court 1 Reservation -->
+            <td>
+                {% for reservation in clay1_reservations %}
+                    {% if reservation.start_time == time %}
+                        User: {{ reservation.user.username if reservation.user else "Unavailable" }} <br>
+                        Available: {{ reservation.is_available }} <br>
+                        Paid: {{ reservation.is_paid }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            
+            <!-- Court 2 Reservation -->
+            <td>
+                {% for reservation in clay2_reservations %}
+                    {% if reservation.start_time == time %}
+                        User: {{ reservation.user.username if reservation.user else "Unavailable" }} <br>
+                        Available: {{ reservation.is_available }} <br>
+                        Paid: {{ reservation.is_paid }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            
+            <!-- Court 3 Reservation -->
+            <td>
+                {% for reservation in clay3_reservations %}
+                    {% if reservation.start_time == time %}
+                        User: {{ reservation.user.username if reservation.user else "Unavailable" }} <br>
+                        Available: {{ reservation.is_available }} <br>
+                        Paid: {{ reservation.is_paid }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            
+            <!-- Court 4 Reservation -->
+            <td>
+                {% for reservation in clay4_reservations %}
+                    {% if reservation.start_time == time %}
+                        User: {{ reservation.user.username if reservation.user else "Unavailable" }} <br>
+                        Available: {{ reservation.is_available }} <br>
+                        Paid: {{ reservation.is_paid }}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
